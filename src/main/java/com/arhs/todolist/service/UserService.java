@@ -1,22 +1,25 @@
 package com.arhs.todolist.service;
 
-import com.arhs.todolist.models.Task;
-import com.arhs.todolist.models.User;
-import com.arhs.todolist.repository.TaskRepository;
+import com.arhs.todolist.dto.UserDTO;
+import com.arhs.todolist.mapper.Mapper;
 import com.arhs.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.arhs.todolist.mapper.Mapper;
 import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final Mapper mapper;
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
+
+    public UserService(Mapper mapper, UserRepository userRepository) {
+        this.mapper = mapper;
         this.userRepository = userRepository;
     }
-    public Optional<User> selectUser(int userId) {
-        return userRepository.findById(userId);
+
+    public Optional<UserDTO> selectUser(int userId) {
+        return mapper.toUserDto(userRepository.findById(userId));
     }
 }

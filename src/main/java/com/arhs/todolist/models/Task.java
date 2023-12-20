@@ -1,15 +1,14 @@
 package com.arhs.todolist.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -19,6 +18,7 @@ public class Task {
     private Integer taskId;
 
     @Column(name = "title")
+    //@NotNull(message = "Title cannot be null")
     private String title;
 
     @Column(name = "description")
@@ -27,7 +27,9 @@ public class Task {
     @Column(name = "status")
     private Boolean completed;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @Transient
     private User user;
 }

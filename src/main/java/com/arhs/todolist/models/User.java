@@ -1,15 +1,15 @@
 package com.arhs.todolist.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 public class User {
@@ -18,7 +18,8 @@ public class User {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "name")
+    @Column(name = "name",unique = true)
+    @NotBlank
     private String name;
 
     @Column(name = "image")

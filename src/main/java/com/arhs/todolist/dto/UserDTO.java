@@ -1,11 +1,13 @@
 package com.arhs.todolist.dto;
 
 import jakarta.persistence.Column;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UserDTO {
     private Integer userId;
     private String name;

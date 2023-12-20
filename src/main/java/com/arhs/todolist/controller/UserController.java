@@ -1,5 +1,6 @@
 package com.arhs.todolist.controller;
 
+import com.arhs.todolist.dto.UserDTO;
 import com.arhs.todolist.exception.NotFoundException;
 import com.arhs.todolist.models.Task;
 import com.arhs.todolist.models.User;
@@ -18,8 +19,8 @@ public class UserController {
     @Autowired
     UserService userService ;
     @PostMapping("/select-user/{userId}")
-    private ResponseEntity<User> selectUser(@PathVariable int userId){
-        Optional<User> selectedUser = userService.selectUser(userId);
+    private ResponseEntity<UserDTO> selectUser(@PathVariable int userId){
+        Optional<UserDTO> selectedUser = userService.selectUser(userId);
         if (selectedUser.isPresent()){
             return ResponseEntity.ok(selectedUser.get());
         }else {
