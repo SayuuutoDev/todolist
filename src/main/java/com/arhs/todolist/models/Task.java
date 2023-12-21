@@ -25,7 +25,7 @@ public class Task {
     private String description;
 
     @Column(name = "status")
-    private Boolean completed;
+    private Boolean completed = false;
 
     @Column(name = "user_id")
     private Integer userId;

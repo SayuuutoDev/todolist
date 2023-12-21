@@ -11,8 +11,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class Mapper {
+public class TaskMapper {
     public TaskDTO toDto(Task task) {
+        if(task == null) {
+            return null;
+        }
         String title = task.getTitle();
         String description = task.getDescription();
         Integer userId = task.getUserId();

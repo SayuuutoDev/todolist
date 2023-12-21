@@ -1,12 +1,9 @@
 package com.arhs.todolist.service;
 
 import com.arhs.todolist.dto.TaskDTO;
-import com.arhs.todolist.mapper.Mapper;
-import com.arhs.todolist.models.Task;
+import com.arhs.todolist.mapper.TaskMapper;
 import com.arhs.todolist.repository.TaskRepository;
 
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,21 +11,21 @@ import java.util.Optional;
 
 @Service
 public class TaskService {
-    private final Mapper mapper;
+    private final TaskMapper taskMapper;
     private final TaskRepository taskRepository;
 
 
-    public TaskService(Mapper mapper, TaskRepository taskRepository) {
-        this.mapper = mapper;
+    public TaskService(TaskMapper taskMapper, TaskRepository taskRepository) {
+        this.taskMapper = taskMapper;
         this.taskRepository = taskRepository;
     }
 
     public List<TaskDTO> listTasks() {
-        return mapper.toTaskDto(taskRepository.findAll());
+        return taskMapper.toTaskDto(taskRepository.findAll());
     }
 
     public TaskDTO saveTask(TaskDTO taskDTO) {
-        return mapper.toDto(taskRepository.save(mapper.toTask(taskDTO)));
+        return taskMapper.toDto(taskRepository.save(taskMapper.toTask(taskDTO)));
     }
 
     public void deleteTask(int taskId) {
@@ -36,7 +33,7 @@ public class TaskService {
     }
 
     public Optional<TaskDTO> selectTask(int taskId) {
-        return mapper.toTaskDto(taskRepository.findById(taskId));
+        return taskMapper.toTaskDto(taskRepository.findById(taskId));
     }
 
 
